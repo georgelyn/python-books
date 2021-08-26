@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="header">
+</div>
+<div class="container">
+    <sidebar>sidebar</sidebar>
+
+    <div class="books">
+        {% for book in books %}
+        <div class="book">
+            <img src="{{ url_for('static', filename='assets/book-stock.jpg') }}" alt="">
+            <p>{{ book.name }}</p>
+            <p>{{ book.author }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
