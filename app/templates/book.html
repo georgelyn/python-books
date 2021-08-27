@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="add-book container">
+    <form action="/add-book" method="POST" class="add-book">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required>
+        <input type="submit" value="Add">
+    </form>
+</div>
+
+{% endblock %}

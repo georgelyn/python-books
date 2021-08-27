@@ -23,7 +23,7 @@ body {
   grid-template-columns: 200px auto;
   height: 100%;
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .sidebar {
@@ -36,7 +36,6 @@ body {
   grid-area: books;
   display: grid;
   justify-content: center;
-  /* grid-area: books; */
   /* grid-template-columns:
     minmax(280px, max-content)
     repeat(auto-fill, 280px); */
@@ -49,7 +48,10 @@ body {
   /* grid-auto-flow: row; */
   /* background-color: aliceblue; */
   border-radius: 10px;
-  margin: 10px;
+  margin-top: 10px;
+  /* height: 90%; */
+  overflow: auto;
+  margin-bottom: 50px;
 }
 
 .book {
@@ -72,4 +74,37 @@ body {
   border-radius: 8px;
   width: 150px;
   height: 150px;
+}
+
+.container.add-book {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.add-book > form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 100px auto;
+}
+
+.add-book > input[type='submit'] {
+  display: flex;
+  justify-content: end;
+  width: 150px;
+  margin-top: 20px;
+  margin-left: auto;
+  padding: 10px;
+}
+
+.add-book > label {
+  padding-top: 10px;
+}
+
+.add-book > input[type='text'] {
+  height: 40px;
+  font-size: 1.2em;
 }
