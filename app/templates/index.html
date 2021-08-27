@@ -2,17 +2,17 @@
 
 {% block body %}
 
-<div class="header">
-</div>
+<header class="header">
+</header>
 <div class="container">
-    <sidebar>sidebar</sidebar>
+    <aside class="sidebar"></aside>
 
     <div class="books">
         {% for book in books %}
         <div class="book">
             <img src="{{ url_for('static', filename='assets/book-stock.jpg') }}" alt="">
             <p>{{ book.name }}</p>
-            <p>{{ book.author }}</p>
+            <p>by {{ book.author }}</p>
         </div>
         {% endfor %}
     </div>
