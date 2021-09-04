@@ -20,7 +20,30 @@ def add():
         if response.status_code == 500:
             raise
         return redirect('/')
-    return render_template('book.html')
+        
+    return render_template('add-book.html')
+
+@app.route('/edit-book/<int:id>', methods=['GET', 'POST'])
+def edit(id):
+    book = requests.get(f'{api_uri}/books/{id}').json()
+
+    if (request.method == 'POST'):
+        response = requests.put(api_uri + f'/books/{id}', json = { "name": request.form["name"], 
+                                                    "author": request.form["author"] })
+        if response.status_code == 500:
+            raise
+        return redirect('/')
+
+    return render_template('edit-book.html', book=book)
+
+
+@app.route('/delete-book/<int:id>')
+def delete(id):
+    response = requests.delete(f'{api_uri}/books/{id}')
+    if response.status_code == 500:
+        raise
+    
+    return redirect('/')
 
 
 if __name__ == '__main__':

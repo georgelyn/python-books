@@ -6,10 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books!</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" </head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel='stylesheet' href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css">
+    <link rel='stylesheet' href="https://use.fontawesome.com/releases/v5.15.4/css/solid.css">
+</head>
 
 <body>
-    <header class="header"></header>
+    <header class="header"><a href="/"><i class="fas fa-home"></i></a></header>
     {% block body %}
     {% endblock %}
 </body>

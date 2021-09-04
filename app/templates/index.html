@@ -5,13 +5,17 @@
 <div class="container">
     <aside class="sidebar">
         <ul>
-            <li><a href="/add-book">Add new book</a></li>
+            <li><a href="/add-book"><i class="fas fa-plus-square"></i>Add new book</a></li>
         </ul>
     </aside>
 
     <div class="books">
         {% for book in books %}
         <div class="book">
+            <div class="btn">
+                <div class="btn-edit"><a href="/edit-book/{{book.id}}"><i class="fas fa-edit"></i></a></div>
+                <div class="btn-delete"><a href="/delete-book/{{book.id}}"><i class="fas fa-trash"></i></a></div>
+            </div>
             <img src="{{ url_for('static', filename='assets/book-stock.jpg') }}" alt="">
             <p>{{ book.name }}</p>
             <p>by {{ book.author }}</p>

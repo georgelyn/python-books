@@ -12,9 +12,16 @@ body {
 }
 
 .header {
+  display: flex;
+  align-items: center;
   background-color: #4d5057e1;
   width: 100%;
   height: 40px;
+}
+
+.header > a > i {
+  color: #fff;
+  margin-left: 10px;
 }
 
 .container {
@@ -32,29 +39,35 @@ body {
   display: flex;
 }
 
+.sidebar > ul {
+  margin: 10px 0 0 10px;
+  list-style-type: none;
+}
+
+.sidebar > ul a {
+  text-decoration: none;
+}
+
+.sidebar i {
+  color: #282c34;
+  margin-right: 10px;
+}
+
 .books {
   grid-area: books;
   display: grid;
   justify-content: center;
-  /* grid-template-columns:
-    minmax(280px, max-content)
-    repeat(auto-fill, 280px); */
   grid-template-columns: repeat(auto-fill, 280px);
-  /* grid-template-columns: repeat(3, 1fr); */
-  /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
   grid-gap: 1em;
   grid-auto-rows: 220px;
-  /* grid-auto-rows: minmax(200px, auto); */
-  /* grid-auto-flow: row; */
-  /* background-color: aliceblue; */
   border-radius: 10px;
   margin-top: 10px;
-  /* height: 90%; */
   overflow: auto;
   margin-bottom: 50px;
 }
 
 .book {
+  display: grid;
   background-color: #fff;
   border-radius: 10px;
   width: 220px;
@@ -76,12 +89,30 @@ body {
   height: 150px;
 }
 
+.btn {
+  place-self: end;
+  height: 10px;
+  width: 10px;
+  padding-right: 10px;
+}
+
+.btn a {
+  color: #282c34;
+}
+
+.btn-delete a:hover {
+  color: #c72835;
+}
+
+.btn-edit a:hover {
+  color: #52b01c;
+}
+
 .container.add-book {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column;
   width: 100%;
-  align-items: center;
-  /* justify-content: center; */
+  align-items: center; */
 }
 
 .add-book > form {
