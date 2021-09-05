@@ -13,10 +13,11 @@ def index():
 @app.route('/add-book', methods=['GET', 'POST'])
 def add():
     if (request.method == 'POST'):
-        # name = request.form["name"]
-        # author = request.form["author"]
-        response = requests.post(api_uri + '/books', json = { "name": request.form["name"], 
-                                                    "author": request.form["author"] })
+        name = request.form["name"].strip()
+        author = request.form["author"].strip()
+
+        response = requests.post(api_uri + '/books', json = { "name": name, 
+                                                    "author": author })
         if response.status_code == 500:
             raise
         return redirect('/')
@@ -24,12 +25,15 @@ def add():
     return render_template('add-book.html')
 
 @app.route('/edit-book/<int:id>', methods=['GET', 'POST'])
-def edit(id):
+def update(id):
     book = requests.get(f'{api_uri}/books/{id}').json()
 
     if (request.method == 'POST'):
-        response = requests.put(api_uri + f'/books/{id}', json = { "name": request.form["name"], 
-                                                    "author": request.form["author"] })
+        name = request.form["name"].strip()
+        author = request.form["author"].strip()
+
+        response = requests.put(api_uri + f'/books/{id}', json = { "name": name, 
+                                                    "author": author })
         if response.status_code == 500:
             raise
         return redirect('/')

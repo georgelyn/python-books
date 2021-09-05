@@ -2,20 +2,26 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books!</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel='stylesheet' href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css">
-    <link rel='stylesheet' href="https://use.fontawesome.com/releases/v5.15.4/css/solid.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Books!</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/solid.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" />
 </head>
 
 <body>
-    <header class="header"><a href="/"><i class="fas fa-home"></i></a></header>
-    {% block body %}
-    {% endblock %}
+  <header class="header">
+    <a href="{{ url_for('index') }}"><i class="fas fa-home"></i><span>books</span></a>
+  </header>
+  {% block body %}
+  {% endblock %}
 </body>
+
+{% block script %}
+{% endblock %}
 
 </html>

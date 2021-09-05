@@ -2,8 +2,8 @@
 
 {% block body %}
 
-<div class="add-book container">
-    <form action="/edit-book/{{book.id}}" method="POST" class="add-book">
+<div class="book-form container">
+    <form id="book-form" action="/edit-book/{{book.id}}" method="POST" class="book-form">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required value="{{book.name}}">
         <label for="author">Author:</label>
@@ -12,4 +12,8 @@
     </form>
 </div>
 
+{% endblock %}
+
+{% block script %}
+<script type=text/javascript src="{{url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}

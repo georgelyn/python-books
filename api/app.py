@@ -17,7 +17,7 @@ class Book(db.Model):
 
 @app.route('/')
 def index():
-    return "Books!"
+    return "Books API"
 
 @app.route('/books')
 def get_all():

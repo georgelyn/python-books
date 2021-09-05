@@ -21,7 +21,18 @@ body {
 
 .header > a > i {
   color: #fff;
-  margin-left: 10px;
+  margin: 0 10px 0 10px;
+}
+
+.header a {
+  text-decoration: none;
+  font-family: 'Rubik', sans-serif;
+  color: #fff;
+}
+
+.header span {
+  text-transform: uppercase;
+  font-size: 0.8em;
 }
 
 .container {
@@ -45,6 +56,7 @@ body {
 }
 
 .sidebar > ul a {
+  color: #282c34;
   text-decoration: none;
 }
 
@@ -59,7 +71,7 @@ body {
   justify-content: center;
   grid-template-columns: repeat(auto-fill, 280px);
   grid-gap: 1em;
-  grid-auto-rows: 220px;
+  /* grid-auto-rows: 220px; */
   border-radius: 10px;
   margin-top: 10px;
   overflow: auto;
@@ -108,21 +120,21 @@ body {
   color: #52b01c;
 }
 
-.container.add-book {
+.container.book-form {
   display: flex;
   /* flex-direction: column;
   width: 100%;
   align-items: center; */
 }
 
-.add-book > form {
+.book-form > form {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  flex-grow: 0.2;
   margin: 100px auto;
 }
 
-.add-book > input[type='submit'] {
+.book-form > input[type='submit'] {
   display: flex;
   justify-content: end;
   width: 150px;
@@ -131,11 +143,11 @@ body {
   padding: 10px;
 }
 
-.add-book > label {
+.book-form > label {
   padding-top: 10px;
 }
 
-.add-book > input[type='text'] {
+.book-form > input[type='text'] {
   height: 40px;
   font-size: 1.2em;
 }
