@@ -56,7 +56,7 @@ def add():
 def delete(id):
     book = Book.query.get(id)
     if book is None:
-        return error_response("The ID doesn't exist.", status = 404)
+        return error_response("The ID doesn't exist.", 404)
     db.session.delete(book)
     db.session.commit()
 
