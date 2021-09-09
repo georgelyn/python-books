@@ -11,6 +11,7 @@ class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120))
     author = db.Column(db.String(120))
+    cover = db.Column(db.String(500))
 
     def __repr__(self):
         return {f"[{self.id}] - {self.name} by {self.author}"}
@@ -28,7 +29,8 @@ def get_all():
         data = { 
             "id": book.id,
             "name": book.name,
-            "author": book.author
+            "author": book.author,
+            "cover": book.cover
         }
         result.append(data)
     
@@ -40,12 +42,12 @@ def get(id):
     book = Book.query.get(id)
     if book is None:
         return error_response("The ID doesn't exist.", 404)
-    return { "id": book.id, "name": book.name, "author": book.author }
+    return { "id": book.id, "name": book.name, "author": book.author, "cover": book.cover }
     
 
 @app.route('/books', methods=["POST"])
 def add():
-    book = Book(name = request.json["name"], author = request.json["author"])
+    book = Book(name = request.json["name"], author = request.json["author"], cover = request.json["cover"])
     db.session.add(book)
     db.session.commit()
 
@@ -73,6 +75,8 @@ def update(id):
         book.name = request.json["name"]
     if 'author' in request.json:
         book.author = request.json["author"]
+    if 'cover' in request.json:
+        book.cover = request.json["cover"]
 
     db.session.commit()
 

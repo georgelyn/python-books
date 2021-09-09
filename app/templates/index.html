@@ -18,7 +18,11 @@
                 <div class="btn-delete"><a href="{{ url_for('delete', id=book.id) }}"><i class="fas fa-trash"></i></a>
                 </div>
             </div>
-            <img src="{{ url_for('static', filename='assets/book-stock.jpg') }}" alt="">
+            {% set cover = url_for('static', filename='assets/book-stock.jpg') %}
+            {% if (book.cover != None) and (book.cover != '') %}
+            {% set cover = "data:image/png;base64," ~ book.cover %}
+            {% endif %}
+            <img src="{{ cover }}" alt="Cover preview">
             <p>{{ book.name }}</p>
             <p>by {{ book.author }}</p>
         </div>

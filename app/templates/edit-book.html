@@ -3,12 +3,22 @@
 {% block body %}
 
 <div class="book-form container">
-    <form id="book-form" action="/edit-book/{{book.id}}" method="POST" class="book-form">
+    <form id="book-form" action="/edit-book/{{book.id}}" method="POST" class="book-form" enctype=multipart/form-data>
+        <div class="img-box">
+            {% set cover = url_for('static', filename='assets/book-stock.jpg') %}
+            {% if (book.cover != None) and (book.cover != '') %}
+            {% set cover = "data:image/png;base64," ~ book.cover %}
+            {% endif %}
+            <img id="img-preview" src="{{ cover }}" alt="Cover preview">
+            <div class="img-remove" onclick="removePicture()"><i class="fas fa-times"></i></div>
+        </div>
+        <input id="file-explorer" type="file" accept="image/png, image/jpeg" name='file' hidden>
+        <input type="button" value="Upload cover" onclick="previewPicture()">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required value="{{book.name}}">
         <label for="author">Author:</label>
         <input type="text" id="author" name="author" required value="{{book.author}}">
-        <input type="submit" value="Edit">
+        <input type="submit" value="Save">
     </form>
 </div>
 

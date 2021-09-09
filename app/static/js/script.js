@@ -25,3 +25,24 @@ const validateFields = (event) => {
     return false;
   }
 };
+
+const previewPicture = () => {
+  const fileExplorer = document.getElementById('file-explorer');
+  fileExplorer.click();
+
+  fileExplorer.addEventListener('change', function () {
+    if (this.value) {
+      const imgPreview = document.getElementById('img-preview');
+      const file = fileExplorer.files[0];
+      imgPreview.src = URL.createObjectURL(file);
+      imgPreview.onload = function () {
+        URL.revokeObjectURL(this.src);
+      };
+    }
+  });
+};
+
+const removePicture = () => {
+  const imgPreview = document.getElementById('img-preview');
+  imgPreview.src = '';
+};

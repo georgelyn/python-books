@@ -1,4 +1,4 @@
-import requests
+import requests, base64
 from flask import Flask, render_template, redirect, request
 
 app = Flask(__name__)
@@ -6,18 +6,26 @@ api_uri = 'http://127.0.0.1:5001'
 
 @app.route('/')
 def index():
-    response = requests.get(api_uri + '/books').json()
-    books = response["books"]
-    return render_template('index.html', books=books)
+    try:
+        response = requests.get(api_uri + '/books').json()
+        books = response["books"]
+        return render_template('index.html', books=books)
+    except Exception:
+        return 'Error: Could not connect to the database' # Error page
 
 @app.route('/add-book', methods=['GET', 'POST'])
 def add():
     if (request.method == 'POST'):
         name = request.form["name"].strip()
         author = request.form["author"].strip()
+        cover = ''
+
+        if 'file' in request.files:
+            file = request.files['file']
+            cover = base64.b64encode(file.read()).decode('utf-8')
 
         response = requests.post(api_uri + '/books', json = { "name": name, 
-                                                    "author": author })
+                                                    "author": author, "cover": cover })
         if response.status_code == 500:
             raise
         return redirect('/')
@@ -31,9 +39,14 @@ def update(id):
     if (request.method == 'POST'):
         name = request.form["name"].strip()
         author = request.form["author"].strip()
+        cover = ''
+
+        if 'file' in request.files:
+            file = request.files['file']
+            cover = base64.b64encode(file.read()).decode('utf-8')
 
         response = requests.put(api_uri + f'/books/{id}', json = { "name": name, 
-                                                    "author": author })
+                                                    "author": author, "cover": cover })
         if response.status_code == 500:
             raise
         return redirect('/')
