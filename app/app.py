@@ -16,15 +16,15 @@ def index():
 @app.route('/add-book', methods=['GET', 'POST'])
 def add():
     if (request.method == 'POST'):
-        name = request.form["name"].strip()
+        title = request.form["title"].strip()
         author = request.form["author"].strip()
-        cover = ''
+        cover = None
 
-        if 'file' in request.files:
+        if 'file' in request.files and request.files['file']:
             file = request.files['file']
             cover = base64.b64encode(file.read()).decode('utf-8')
 
-        response = requests.post(api_uri + '/books', json = { "name": name, 
+        response = requests.post(api_uri + '/books', json = { "title": title, 
                                                     "author": author, "cover": cover })
         if response.status_code == 500:
             raise
@@ -37,15 +37,17 @@ def update(id):
     book = requests.get(f'{api_uri}/books/{id}').json()
 
     if (request.method == 'POST'):
-        name = request.form["name"].strip()
+        title = request.form["title"].strip()
         author = request.form["author"].strip()
-        cover = ''
+        cover = None
 
-        if 'file' in request.files:
+        if 'file' in request.files and request.files['file']:
             file = request.files['file']
             cover = base64.b64encode(file.read()).decode('utf-8')
+        elif 'removeImg' in request.files:
+            cover = '';
 
-        response = requests.put(api_uri + f'/books/{id}', json = { "name": name, 
+        response = requests.put(api_uri + f'/books/{id}', json = { "title": title, 
                                                     "author": author, "cover": cover })
         if response.status_code == 500:
             raise

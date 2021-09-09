@@ -8,20 +8,20 @@ window.onload = function () {
 const validateFields = (event) => {
   event.preventDefault();
   const form = document.getElementById('book-form');
-  const nameInput = document.getElementById('name');
-  const authorInput = document.getElementById('author');
+  const title = document.getElementById('title');
+  const author = document.getElementById('author');
 
-  if (nameInput.value.trim() !== '' && authorInput.value.trim() !== '') {
+  if (title.value.trim() !== '' && author.value.trim() !== '') {
     form.submit();
   }
 
-  if (nameInput.value.trim() === '') {
-    alert('The name cannot be empty.');
-    nameInput.focus();
+  if (title.value.trim() === '') {
+    alert('The title cannot be empty.');
+    title.focus();
     return false;
-  } else if (authorInput.value.trim() === '') {
+  } else if (author.value.trim() === '') {
     alert('The author cannot be empty.');
-    authorInput.focus();
+    author.focus();
     return false;
   }
 };
@@ -31,6 +31,7 @@ const previewPicture = () => {
   fileExplorer.click();
 
   fileExplorer.addEventListener('change', function () {
+    console.log(fileExplorer);
     if (this.value) {
       const imgPreview = document.getElementById('img-preview');
       const file = fileExplorer.files[0];
@@ -43,6 +44,8 @@ const previewPicture = () => {
 };
 
 const removePicture = () => {
+  let fileExplorer = document.getElementById('file-explorer');
   const imgPreview = document.getElementById('img-preview');
   imgPreview.src = '';
+  fileExplorer.name = 'removeImg';
 };

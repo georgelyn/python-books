@@ -9,12 +9,12 @@ db = SQLAlchemy(app)
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120))
+    title = db.Column(db.String(120))
     author = db.Column(db.String(120))
     cover = db.Column(db.String(500))
 
     def __repr__(self):
-        return {f"[{self.id}] - {self.name} by {self.author}"}
+        return {f"[{self.id}] - {self.title} by {self.author}"}
 
 @app.route('/')
 def index():
@@ -28,7 +28,7 @@ def get_all():
     for book in books:
         data = { 
             "id": book.id,
-            "name": book.name,
+            "title": book.title,
             "author": book.author,
             "cover": book.cover
         }
@@ -42,12 +42,12 @@ def get(id):
     book = Book.query.get(id)
     if book is None:
         return error_response("The ID doesn't exist.", 404)
-    return { "id": book.id, "name": book.name, "author": book.author, "cover": book.cover }
+    return { "id": book.id, "title": book.title, "author": book.author, "cover": book.cover }
     
 
 @app.route('/books', methods=["POST"])
 def add():
-    book = Book(name = request.json["name"], author = request.json["author"], cover = request.json["cover"])
+    book = Book(title = request.json["title"], author = request.json["author"], cover = request.json["cover"])
     db.session.add(book)
     db.session.commit()
 
@@ -71,16 +71,16 @@ def update(id):
     if book is None:
         return error_response("The ID doesn't exist.", 404)
 
-    if 'name' in request.json:
-        book.name = request.json["name"]
+    if 'title' in request.json:
+        book.title = request.json["title"]
     if 'author' in request.json:
         book.author = request.json["author"]
-    if 'cover' in request.json:
+    if 'cover' in request.json and request.json['cover'] is not None:
         book.cover = request.json["cover"]
 
     db.session.commit()
 
-    return { "id": book.id, "name": book.name, "author": book.author }
+    return { "id": book.id, "title": book.title, "author": book.author }
 
 
 def error_response(message, error_code):

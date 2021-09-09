@@ -23,7 +23,7 @@
             {% set cover = "data:image/png;base64," ~ book.cover %}
             {% endif %}
             <img src="{{ cover }}" alt="Cover preview">
-            <p>{{ book.name }}</p>
+            <p>{{ book.title }}</p>
             <p>by {{ book.author }}</p>
         </div>
         {% endfor %}
