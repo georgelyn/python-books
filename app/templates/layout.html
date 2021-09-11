@@ -14,9 +14,12 @@
 </head>
 
 <body>
+  {% block header %}
   <header class="header">
     <a href="{{ url_for('index') }}"><i class="fas fa-home"></i><span>books</span></a>
   </header>
+  {% endblock %}
+
   {% block body %}
   {% endblock %}
 </body>

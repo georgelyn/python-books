@@ -1,44 +1,54 @@
 import requests, base64
 from flask import Flask, render_template, redirect, request
+from os import environ as env
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
-api_uri = 'http://127.0.0.1:5001'
+API_URL = env.get('API_URL')
 
 @app.route('/')
 def index():
     try:
-        response = requests.get(api_uri + '/books').json()
-        books = response["books"]
+        response = requests.get(f'{API_URL}/books').json()
+        books = response['books']
         return render_template('index.html', books=books)
     except Exception:
-        return 'Error: Could not connect to the database' # Error page
+        return redirect('/error')
+
 
 @app.route('/add-book', methods=['GET', 'POST'])
 def add():
-    if (request.method == 'POST'):
-        title = request.form["title"].strip()
-        author = request.form["author"].strip()
+    try:
+        if (request.method == 'GET'):
+            return render_template('add-book.html')
+
+        title = request.form['title'].strip()
+        author = request.form['author'].strip()
         cover = None
 
         if 'file' in request.files and request.files['file']:
             file = request.files['file']
             cover = base64.b64encode(file.read()).decode('utf-8')
 
-        response = requests.post(api_uri + '/books', json = { "title": title, 
-                                                    "author": author, "cover": cover })
-        if response.status_code == 500:
-            raise
+        requests.post(f'{API_URL}/books', json = { "title": title, 
+                                                        "author": author, "cover": cover })
         return redirect('/')
         
-    return render_template('add-book.html')
+    except Exception:
+        return redirect('/error')
+
 
 @app.route('/edit-book/<int:id>', methods=['GET', 'POST'])
 def update(id):
-    book = requests.get(f'{api_uri}/books/{id}').json()
+    try:
+        if (request.method == 'GET'):
+            book = requests.get(f'{API_URL}/books/{id}').json()
+            return render_template('edit-book.html', book=book)
 
-    if (request.method == 'POST'):
-        title = request.form["title"].strip()
-        author = request.form["author"].strip()
+        title = request.form['title'].strip()
+        author = request.form['author'].strip()
         cover = None
 
         if 'file' in request.files and request.files['file']:
@@ -47,22 +57,26 @@ def update(id):
         elif 'removeImg' in request.files:
             cover = '';
 
-        response = requests.put(api_uri + f'/books/{id}', json = { "title": title, 
-                                                    "author": author, "cover": cover })
-        if response.status_code == 500:
-            raise
+        requests.put(f'{API_URL}/books/{id}', json = { "title": title, 
+                                                        "author": author, "cover": cover })
         return redirect('/')
-
-    return render_template('edit-book.html', book=book)
+            
+    except Exception:
+        return redirect('/error')
 
 
 @app.route('/delete-book/<int:id>')
 def delete(id):
-    response = requests.delete(f'{api_uri}/books/{id}')
-    if response.status_code == 500:
-        raise
-    
-    return redirect('/')
+    try:
+        requests.delete(f'{API_URL}/books/{id}')       
+        return redirect('/')
+    except Exception:
+        return redirect('/error')
+
+
+@app.route('/error')
+def show_error():
+    return render_template('error.html');
 
 
 if __name__ == '__main__':

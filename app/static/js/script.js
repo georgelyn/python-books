@@ -31,7 +31,6 @@ const previewPicture = () => {
   fileExplorer.click();
 
   fileExplorer.addEventListener('change', function () {
-    console.log(fileExplorer);
     if (this.value) {
       const imgPreview = document.getElementById('img-preview');
       const file = fileExplorer.files[0];
@@ -44,8 +43,8 @@ const previewPicture = () => {
 };
 
 const removePicture = () => {
-  let fileExplorer = document.getElementById('file-explorer');
+  const fileExplorer = document.getElementById('file-explorer');
   const imgPreview = document.getElementById('img-preview');
-  imgPreview.src = '';
+  imgPreview.src = '/static/assets/book-stock.png';
   fileExplorer.name = 'removeImg';
 };

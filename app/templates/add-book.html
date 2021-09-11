@@ -6,7 +6,7 @@
 
     <form id="book-form" action="/add-book" method="POST" class="book-form" enctype=multipart/form-data>
         <div class="img-box">
-            <img id="img-preview" src="{{ url_for('static', filename='assets/book-stock.jpg') }}" alt="Cover preview">
+            <img id="img-preview" src="{{ url_for('static', filename='assets/book-stock.png') }}" alt="Cover preview">
             <div class="img-remove" onclick="removePicture()"><i class="fas fa-times"></i></div>
         </div>
         <input id="file-explorer" type="file" accept="image/png, image/jpeg" name='file' hidden>
