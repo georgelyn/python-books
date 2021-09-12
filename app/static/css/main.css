@@ -64,17 +64,26 @@ body {
   color: #f8f9fa;
   text-decoration: none;
   font-weight: 500;
+  display: flex;
+  align-items: center;
 }
 
 .sidebar li {
   padding: 3px 0 3px 10px;
   margin-top: 10px;
   cursor: pointer;
+  /* width: 300px; */
 }
 
 .sidebar li:hover {
   background: hsla(0, 0%, 100%, 0.2);
   border-left: 5px solid #8f53b8;
+}
+
+.link-name {
+  visibility: hidden;
+  position: absolute;
+  transition: 0.3s;
 }
 
 .sidebar i {
@@ -222,7 +231,6 @@ body {
   top: 0;
   right: 0;
   color: #fff;
-  /* font-weight: bold; */
   background-color: hsla(0, 9%, 7%, 0.582);
   width: 20px;
   text-align: center;
@@ -235,37 +243,19 @@ body {
 }
 
 .error-container {
-  /* background: hsla(0, 0%, 100%, 0.37); */
-  /* background: hsla(0, 9%, 7%, 0.295); */
-  /* display: grid; */
   background: #4d5057e1;
-  /* height: 100%; */
   height: 100vh;
   width: 100%;
-  /* display: flex; */
-  /* grid-template-areas:
-    'error-msg'
-    'error-img'; */
-  /* grid-template-columns: repeat(3, 1fr); */
-  /* grid-template-rows: repeat(4, auto); */
   overflow: auto;
 }
 
 .error-img {
-  /* justify-content: center;
-  align-items: center; */
-  /* overflow: auto; */
-  /* grid-area: error-img; */
   display: flex;
-  /* align-items: center;
-  justify-content: center; */
   margin: 0 auto;
 }
 
 .error-msg {
-  /* grid-area: error-msg; */
   display: flex;
-  /* align-items: center; */
   justify-content: center;
   text-decoration: none;
   font-family: 'Rubik', sans-serif;
@@ -274,4 +264,46 @@ body {
 
 .error-msg:first-child {
   padding-top: 50px;
+}
+
+
+@media (max-width: 1366px) {
+  .container {
+    grid-template-columns: 0fr auto;
+  }
+  
+  .sidebar {
+    width: 50px;
+  }
+
+  .sidebar p {
+    display: none;
+  }
+
+  .sidebar i {
+    font-size: 1.5em;
+    margin-left: 3px;
+  }
+
+  .sidebar li:hover .link-name {
+    background: hsla(0, 9%, 7%, 0.733);
+    visibility: visible;
+    width: 110px;
+    margin-left: 40px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 1230px) {
+  .book-form > form {
+    width: 50%;
+  }
+}
+
+@media (max-width: 650px) {
+  .book-form > form {
+    width: 80%;
+  }
 }
