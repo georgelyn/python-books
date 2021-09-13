@@ -97,7 +97,7 @@ body {
   justify-content: center;
   grid-template-columns: repeat(auto-fill, 280px);
   grid-gap: 1em;
-  /* grid-auto-rows: 220px; */
+  grid-auto-rows: max-content;
   border-radius: 10px;
   margin-top: 10px;
   overflow: auto;
@@ -112,6 +112,7 @@ body {
   width: 220px;
   margin: 0 auto;
   padding: 5px;
+  /* height: max-content; */
 }
 
 .book p {
