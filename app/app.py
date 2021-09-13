@@ -32,8 +32,11 @@ def add():
             file = request.files['file']
             cover = base64.b64encode(file.read()).decode('utf-8')
 
-        requests.post(f'{API_URL}/books', json = { "title": title, 
+        response = requests.post(f'{API_URL}/books', json = { "title": title, 
                                                         "author": author, "cover": cover })
+
+        if response.status_code == 500:
+            raise
         return redirect('/')
         
     except Exception:
@@ -57,8 +60,11 @@ def update(id):
         elif 'removeImg' in request.files:
             cover = '';
 
-        requests.put(f'{API_URL}/books/{id}', json = { "title": title, 
+        response = requests.put(f'{API_URL}/books/{id}', json = { "title": title, 
                                                         "author": author, "cover": cover })
+
+        if response.status_code == 500:
+            raise
         return redirect('/')
             
     except Exception:
@@ -68,7 +74,9 @@ def update(id):
 @app.route('/delete-book/<int:id>')
 def delete(id):
     try:
-        requests.delete(f'{API_URL}/books/{id}')       
+        response = requests.delete(f'{API_URL}/books/{id}')       
+        if response.status_code == 500:
+            raise
         return redirect('/')
     except Exception:
         return redirect('/error')
