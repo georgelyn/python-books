@@ -11,7 +11,12 @@ API_URL = env.get('API_URL')
 @app.route('/')
 def index():
     try:
-        response = requests.get(f'{API_URL}/books').json()
+        args = request.args;
+        order_by = 'id'
+        if 'order_by' in args:
+            order_by = args['order_by']
+
+        response = requests.get(f'{API_URL}/books?order_by={order_by}').json()
         books = response['books']
         return render_template('index.html', books=books)
     except Exception:
@@ -43,7 +48,7 @@ def add():
         return redirect('/error')
 
 
-@app.route('/edit-book/<int:id>', methods=['GET', 'POST'])
+@app.route('/book/<int:id>', methods=['GET', 'POST'])
 def update(id):
     try:
         if (request.method == 'GET'):

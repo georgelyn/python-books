@@ -18,6 +18,7 @@ body {
   background-color: #4d5057e1;
   width: 100%;
   height: 40px;
+  justify-content: space-between;
 }
 
 .header > a > i {
@@ -89,6 +90,33 @@ body {
 .sidebar i {
   color: #f8f9fa;
   margin-right: 10px;
+}
+
+.books-order {
+  display: flex;
+  margin-right: 15px;
+  height: 22px;
+}
+
+.books-order > p {
+  font-family: 'Rubik', sans-serif;
+  font-size: 12px;
+  color: #fff;
+  font-weight: 600;
+  align-self: center;
+}
+
+.books-order > select {
+  font-family: 'Rubik', sans-serif;
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #e9ecf4;
+  width: 70px;
+  background: #696c74c4;
+  color: #fff;
 }
 
 .books {

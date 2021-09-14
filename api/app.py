@@ -1,6 +1,7 @@
 from flask import request, Response
 from config import app, db
 from models import Book
+from sqlalchemy import asc, desc
 
 @app.route('/')
 def index():
@@ -9,7 +10,18 @@ def index():
 @app.route('/books')
 def get_all():
     try:
-        books = Book.query.all()
+        order_by = "id"
+        sort = "asc"
+        args = request.args
+
+        if "order_by" in args:
+            order_by = args["order_by"]
+        if "sort" in args:
+            sort = args["sort"]
+
+        order_by_query = asc(order_by) if sort == "asc" else desc(order_by)
+
+        books = Book.query.order_by(order_by_query).all()
         result = []
 
         for book in books:
@@ -22,7 +34,8 @@ def get_all():
             result.append(data)
         
         return { "books": result }
-    except Exception:
+    except Exception as ex:
+        print(ex)
         return error_response("There was an error.", 500)
 
 @app.route('/books/<id>')
@@ -32,7 +45,8 @@ def get(id):
         if book is None:
             return error_response("The ID doesn't exist.", 404)
         return { "id": book.id, "title": book.title, "author": book.author, "cover": book.cover }
-    except Exception:
+    except Exception as ex:
+        print(ex)
         return error_response("There was an error.", 500)
 
 @app.route('/books', methods=["POST"])
@@ -43,7 +57,8 @@ def add():
         db.session.commit()
 
         return { "id": book.id }
-    except Exception:
+    except Exception as ex:
+        print(ex)
         return error_response("There was an error.", 500)
 
 @app.route('/books/<id>', methods=["DELETE"])
@@ -56,7 +71,8 @@ def delete(id):
         db.session.commit()
 
         return Response('', status = 204)
-    except Exception:
+    except Exception as ex:
+        print(ex)
         return error_response("There was an error deleting the book.", 500)
 
 @app.route('/books/<id>', methods=["PUT"])
@@ -76,7 +92,8 @@ def update(id):
         db.session.commit()
 
         return { "id": book.id, "title": book.title, "author": book.author }
-    except Exception:
+    except Exception as ex:
+        print(ex)
         return error_response("There was an error updating the book.", 500)
 
 def error_response(message, error_code):

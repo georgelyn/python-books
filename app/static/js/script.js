@@ -3,6 +3,12 @@ window.onload = function () {
   if (form) {
     form.addEventListener('submit', validateFields);
   }
+
+  if (window.location.href.includes('?order_by=')) {
+    const url = window.location.href;
+    const dropdown = document.getElementById('order-dropdown');
+    dropdown.value = url.substring(url.indexOf('=') + 1, url.length);
+  }
 };
 
 const validateFields = (event) => {
@@ -50,5 +56,12 @@ const removePicture = () => {
 const showConfirmation = (event) => {
   if (!confirm('Are you sure you want to delete this book?')) {
     event.preventDefault();
+  }
+};
+
+const orderBooks = () => {
+  const dropdown = document.getElementById('order-dropdown');
+  if (dropdown.value !== '') {
+    window.location.href = `/?order_by=${dropdown.value}`;
   }
 };

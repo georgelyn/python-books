@@ -3,7 +3,8 @@
 {% block body %}
 
 <div class="book-form container">
-    <form id="book-form" action="/edit-book/{{ book.id }}" method="POST" class="book-form" enctype=multipart/form-data>
+    <form id="book-form" action="{{ url_for('update', id=book.id) }}" method="POST" class="book-form"
+        enctype=multipart/form-data>
         <div class="img-box">
             {% set cover = url_for('static', filename='assets/book-stock.png') %}
             {% if (book.cover != None) and (book.cover != '') %}
