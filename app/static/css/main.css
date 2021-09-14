@@ -99,9 +99,10 @@ body {
   grid-gap: 1em;
   grid-auto-rows: max-content;
   border-radius: 10px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   overflow: auto;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
+  padding: 10px 0 60px 0;
 }
 
 .book {
@@ -173,11 +174,10 @@ body {
   padding: 10px;
   cursor: pointer;
   border: 1px solid #dadee3;
-  /* border-color: #f8f9fa; */
   background-color: #f8f9fa;
-  /* color: #3c4043; */
   border-radius: 4px;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 .book-form > input[type='submit']:hover {
@@ -267,12 +267,11 @@ body {
   padding-top: 50px;
 }
 
-
-@media (max-width: 1366px) {
+@media screen and (max-width: 1366px) {
   .container {
     grid-template-columns: 0fr auto;
   }
-  
+
   .sidebar {
     width: 50px;
   }
@@ -297,13 +296,13 @@ body {
   }
 }
 
-@media (max-width: 1230px) {
+@media screen and (max-width: 1230px) {
   .book-form > form {
     width: 50%;
   }
 }
 
-@media (max-width: 650px) {
+@media screen and (max-width: 650px) {
   .book-form > form {
     width: 80%;
   }

@@ -1,26 +1,6 @@
-from flask import Flask, request, Response
-from flask_sqlalchemy import SQLAlchemy
-from os import environ as env
-from dotenv import load_dotenv
-
-load_dotenv()
-
-app = Flask(__name__)
-
-DB_URL = env.get('SQLALCHEMY_DATABASE_URL')
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///' + DB_URL
-db = SQLAlchemy(app)
-
-# db.create_all()
-
-class Book(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(120))
-    author = db.Column(db.String(120))
-    cover = db.Column(db.String(500))
-
-    def __repr__(self):
-        return {f"[{self.id}] - {self.title} by {self.author}"}
+from flask import request, Response
+from config import app, db
+from models import Book
 
 @app.route('/')
 def index():
@@ -100,6 +80,6 @@ def update(id):
         return error_response("There was an error updating the book.", 500)
 
 def error_response(message, error_code):
-    return Response('{ "error": ' + message + ' }', 
+    return Response('{ "error": "' + message + '" }', 
                     status = error_code, 
                     mimetype='application/json')
