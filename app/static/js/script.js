@@ -18,11 +18,9 @@ const validateFields = (event) => {
   if (title.value.trim() === '') {
     alert('The title cannot be empty.');
     title.focus();
-    return false;
   } else if (author.value.trim() === '') {
     alert('The author cannot be empty.');
     author.focus();
-    return false;
   }
 };
 
@@ -47,4 +45,10 @@ const removePicture = () => {
   const imgPreview = document.getElementById('img-preview');
   imgPreview.src = '/static/assets/book-stock.png';
   fileExplorer.name = 'removeImg';
+};
+
+const showConfirmation = (event) => {
+  if (!confirm('Are you sure you want to delete this book?')) {
+    event.preventDefault();
+  }
 };

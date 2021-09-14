@@ -18,7 +18,8 @@
             <div class="btn">
                 <div class="btn-edit"><a href="{{ url_for('update', id=book.id) }}"><i class="fas fa-edit"></i></a>
                 </div>
-                <div class="btn-delete"><a href="{{ url_for('delete', id=book.id) }}"><i class="fas fa-trash"></i></a>
+                <div class="btn-delete"><a href="{{ url_for('delete', id=book.id) }}"
+                        onclick="showConfirmation(event)"><i class="fas fa-trash"></i></a>
                 </div>
             </div>
             {% set cover = url_for('static', filename='assets/book-stock.png') %}
@@ -33,4 +34,8 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block script %}
+<script type=text/javascript src="{{url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}
