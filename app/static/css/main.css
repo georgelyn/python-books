@@ -5,6 +5,8 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   font-family: 'Roboto', sans-serif;
   background-color: #e9ecf4;
   overflow: hidden;
@@ -128,7 +130,7 @@ body {
   grid-auto-rows: max-content;
   border-radius: 10px;
   overflow: auto;
-  padding: 10px 0 60px 0;
+  padding: 20px 0 40px 0;
 }
 
 .book {
@@ -329,6 +331,10 @@ body {
 }
 
 @media screen and (max-width: 650px) {
+  .books {
+    padding: 20px 0 60px 0;
+  }
+
   .book-form > form {
     width: 80%;
   }
