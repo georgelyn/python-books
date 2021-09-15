@@ -2,9 +2,9 @@
 
 As a way to familiarize myself with both Python and Flask, I created a simple CRUD web application and API, using SQLite to store the data via the SQLAlchemy ORM library to simplify the DB operations.
 
-![Home page](https://i.imgur.com/UEjulOQ.png)
+![Home page](https://i.imgur.com/FnDZe4B.png)
 
-![Edit page](https://i.imgur.com/e5tf9m9.png)
+![Add page](https://i.imgur.com/znOLFnf.png)
 
 ## Setup and installation
 
