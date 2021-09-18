@@ -19,12 +19,8 @@
         <input type="text" id="title" name="title" required value="{{ book.title }}">
         <label for="author">Author:</label>
         <input type="text" id="author" name="author" required value="{{ book.author }}">
-        <input type="submit" value="Save">
+        <input type="submit" value="Save" onclick="showLoader(true)">
     </form>
 </div>
 
-{% endblock %}
-
-{% block script %}
-<script type="text/javascript" src="{{url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}

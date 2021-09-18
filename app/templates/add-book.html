@@ -4,7 +4,7 @@
 
 <div class="book-form container">
 
-    <form id="book-form" action="/add-book" method="POST" class="book-form" enctype=multipart/form-data>
+    <form id="book-form" action="{{ url_for('add') }}" method="POST" class="book-form" enctype=multipart/form-data>
         <div class="img-box">
             <img id="img-preview" src="{{ url_for('static', filename='assets/book-stock.png') }}" alt="Cover preview">
             <div class="img-remove" onclick="removePicture()"><i class="fas fa-times"></i></div>
@@ -15,12 +15,8 @@
         <input type="text" id="title" name="title" required>
         <label for="author">Author:</label>
         <input type="text" id="author" name="author" required>
-        <input type="submit" value="Save">
+        <input type="submit" value="Save" onclick="showLoader(true)">
     </form>
 </div>
 
-{% endblock %}
-
-{% block script %}
-<script type="text/javascript" src="{{url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}

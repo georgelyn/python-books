@@ -1,7 +1,8 @@
 {% for book in books %}
 <div class="book">
     <div class="btn">
-        <div class="btn-edit"><a href="{{ url_for('update', id=book.id) }}"><i class="fas fa-edit"></i></a>
+        <div class="btn-edit"><a href="{{ url_for('update', id=book.id) }}" onclick="showLoader(true)"><i
+                    class="fas fa-edit"></i></a>
         </div>
         <div class="btn-delete"><a href="{{ url_for('delete', id=book.id) }}" onclick="showConfirmation(event)"><i
                     class="fas fa-trash"></i></a>

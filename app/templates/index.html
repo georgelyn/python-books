@@ -2,7 +2,7 @@
 
 {% block header %}
 <header class="header">
-    <a href="{{ url_for('index') }}"><i class="fas fa-home"></i><span>books</span></a>
+    <a href="{{ url_for('index') }}" onclick="showLoader(true)"><i class="fas fa-home"></i><span>books</span></a>
     <div id="books-order" class="books-order">
         <p>Order by</p>
         <select id="order-dropdown" onchange="orderBooks()">
@@ -20,7 +20,7 @@
 <div class="container">
     <aside class="sidebar">
         <ul>
-            <li><a href="{{ url_for('add') }}"><i class="fas fa-plus-square"></i>
+            <li><a href="{{ url_for('add') }}" onclick="showLoader(true)"><i class="fas fa-plus-square"></i>
                     <p>Add new book</p>
                     <span class="link-name">Add new book</span>
                 </a></li>
@@ -31,8 +31,4 @@
     </div>
 </div>
 
-{% endblock %}
-
-{% block script %}
-<script type="text/javascript" src="{{url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}

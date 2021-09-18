@@ -23,9 +23,11 @@ const validateFields = (event) => {
   if (title.value.trim() === '') {
     alert('The title cannot be empty.');
     title.focus();
+    showLoader(false);
   } else if (author.value.trim() === '') {
     alert('The author cannot be empty.');
     author.focus();
+    showLoader(false);
   }
 };
 
@@ -55,10 +57,13 @@ const removePicture = () => {
 const showConfirmation = (event) => {
   if (!confirm('Are you sure you want to delete this book?')) {
     event.preventDefault();
+  } else {
+    showLoader(true);
   }
 };
 
 const orderBooks = () => {
+  showLoader(true);
   const dropdown = document.getElementById('order-dropdown');
   if (dropdown.value !== '') {
     const books = document.getElementById('books');
@@ -66,11 +71,21 @@ const orderBooks = () => {
     fetch(`/?order_by=${dropdown.value}`)
       .then((response) => response.json())
       .then((data) => {
-        books.innerHTML = '';
+        showLoader(false);
         books.innerHTML = data.data;
       })
       .catch((error) => {
+        showLoader(false);
         console.error('Error:', error);
       });
+  }
+};
+
+const showLoader = (show) => {
+  const loader = document.getElementById('loader-container');
+  if (show) {
+    loader.style.display = 'flex';
+  } else {
+    loader.style.display = 'none';
   }
 };

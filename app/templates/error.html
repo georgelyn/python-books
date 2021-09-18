@@ -7,8 +7,9 @@
 
 <div class="error-container">
     <p class="error-msg">There was an error... Oops...</p>
-    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='assets/error.png') }}"
-            alt="Puppy on top of books" class="error-img"></a>
+    <a href="{{ url_for('index') }}" onclick="showLoader(true)"><img
+            src="{{ url_for('static', filename='assets/error.png') }}" alt="Puppy on top of books"
+            class="error-img"></a>
     <p class="error-msg">Here's a picture of a puppy on top of books!</p>
 </div>
 

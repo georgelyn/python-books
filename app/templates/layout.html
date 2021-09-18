@@ -8,6 +8,7 @@
   <title>Books!</title>
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/loader.css') }}" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/solid.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" />
@@ -16,8 +17,14 @@
 <body>
   {% block header %}
   <header class="header">
-    <a href="{{ url_for('index') }}"><i class="fas fa-home"></i><span>books</span></a>
+    <a href="{{ url_for('index') }}" onclick="showLoader(true)"><i class="fas fa-home"></i><span>books</span></a>
   </header>
+  {% endblock %}
+
+  {% block loader %}
+  <div class="loader-container" id="loader-container">
+    <div class="lds-dual-ring"></div>
+  </div>
   {% endblock %}
 
   {% block body %}
@@ -25,6 +32,7 @@
 </body>
 
 {% block script %}
+<script type="text/javascript" src="{{url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}
 
 </html>
