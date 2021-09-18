@@ -1,5 +1,5 @@
 import requests, base64
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, jsonify
 from os import environ as env
 from dotenv import load_dotenv
 
@@ -18,6 +18,10 @@ def index():
 
         response = requests.get(f'{API_URL}/books?order_by={order_by}').json()
         books = response['books']
+        
+        if 'order_by' in args:
+            return jsonify({'data': render_template('books.html', books=books)})
+
         return render_template('index.html', books=books)
     except Exception:
         return redirect('/error')

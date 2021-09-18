@@ -26,30 +26,13 @@
                 </a></li>
         </ul>
     </aside>
-    <div class="books">
-        {% for book in books %}
-        <div class="book">
-            <div class="btn">
-                <div class="btn-edit"><a href="{{ url_for('update', id=book.id) }}"><i class="fas fa-edit"></i></a>
-                </div>
-                <div class="btn-delete"><a href="{{ url_for('delete', id=book.id) }}"
-                        onclick="showConfirmation(event)"><i class="fas fa-trash"></i></a>
-                </div>
-            </div>
-            {% set cover = url_for('static', filename='assets/book-stock.png') %}
-            {% if (book.cover != None) and (book.cover != '') %}
-            {% set cover = "data:image/png;base64," ~ book.cover %}
-            {% endif %}
-            <img src="{{ cover }}" alt="Cover preview">
-            <p>{{ book.title }}</p>
-            <p>by {{ book.author }}</p>
-        </div>
-        {% endfor %}
+    <div class="books" id="books">
+        {% include 'books.html' %}
     </div>
 </div>
 
 {% endblock %}
 
 {% block script %}
-<script type=text/javascript src="{{url_for('static', filename='js/script.js') }}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/script.js') }}"></script>
 {% endblock %}

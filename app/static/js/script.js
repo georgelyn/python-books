@@ -4,10 +4,9 @@ window.onload = function () {
     form.addEventListener('submit', validateFields);
   }
 
-  if (window.location.href.includes('?order_by=')) {
-    const url = window.location.href;
-    const dropdown = document.getElementById('order-dropdown');
-    dropdown.value = url.substring(url.indexOf('=') + 1, url.length);
+  const dropdown = document.getElementById('order-dropdown');
+  if (dropdown) {
+    dropdown.value = '';
   }
 };
 
@@ -62,6 +61,16 @@ const showConfirmation = (event) => {
 const orderBooks = () => {
   const dropdown = document.getElementById('order-dropdown');
   if (dropdown.value !== '') {
-    window.location.href = `/?order_by=${dropdown.value}`;
+    const books = document.getElementById('books');
+
+    fetch(`/?order_by=${dropdown.value}`)
+      .then((response) => response.json())
+      .then((data) => {
+        books.innerHTML = '';
+        books.innerHTML = data.data;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
 };
