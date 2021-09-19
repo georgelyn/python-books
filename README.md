@@ -2,7 +2,7 @@
 
 As a way to familiarize myself with both Python and Flask, I created a simple CRUD web application and API, using SQLite to store the data via the SQLAlchemy ORM library to simplify the DB operations.
 
-![Home page](https://i.imgur.com/FnDZe4B.png)
+![Home page](https://i.imgur.com/63qfHq1.png)
 
 ![Add page](https://i.imgur.com/znOLFnf.png)
 
@@ -26,9 +26,13 @@ cd api
 flask run
 ```
 
+You can access it by going to [http://127.0.0.1:5001/](http://127.0.0.1:5001/)
+
 Run the client:
 
 ```code
 cd app
 flask run
 ```
+
+You can access it by going to [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
