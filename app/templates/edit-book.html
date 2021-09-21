@@ -19,7 +19,7 @@
         <input type="text" id="title" name="title" required value="{{ book.title }}">
         <label for="author">Author:</label>
         <input type="text" id="author" name="author" required value="{{ book.author }}">
-        <input type="submit" value="Save" onclick="showLoader(true)">
+        <input type="submit" value="Save" onclick="validateFields(event)">
     </form>
 </div>
 

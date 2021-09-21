@@ -1,9 +1,4 @@
 window.onload = function () {
-  const form = document.getElementById('book-form');
-  if (form) {
-    form.addEventListener('submit', validateFields);
-  }
-
   const dropdown = document.getElementById('order-dropdown');
   if (dropdown) {
     dropdown.value = '';
@@ -17,17 +12,16 @@ const validateFields = (event) => {
   const author = document.getElementById('author');
 
   if (title.value.trim() !== '' && author.value.trim() !== '') {
+    showLoader(true);
     form.submit();
   }
 
   if (title.value.trim() === '') {
     alert('The title cannot be empty.');
     title.focus();
-    showLoader(false);
   } else if (author.value.trim() === '') {
     alert('The author cannot be empty.');
     author.focus();
-    showLoader(false);
   }
 };
 

@@ -102,9 +102,8 @@ body {
 
 .books-order > p {
   font-family: 'Rubik', sans-serif;
-  font-size: 12px;
+  font-size: 0.7em;
   color: #fff;
-  font-weight: 600;
   align-self: center;
 }
 
@@ -135,13 +134,11 @@ body {
 
 .book {
   display: grid;
-  /* background-color: #fff; */
   background: hsla(0, 0%, 100%, 0.664);
   border-radius: 10px;
   width: 220px;
   margin: 0 auto;
   padding: 5px;
-  /* height: max-content; */
 }
 
 .book p {
@@ -180,8 +177,6 @@ body {
 .container.book-form {
   display: flex;
   flex-direction: column;
-  /*width: 100%;
-  align-items: center; */
   overflow: auto;
 }
 
@@ -195,7 +190,7 @@ body {
 
 .book-form > input[type='submit'] {
   display: flex;
-  justify-content: end;
+  justify-content: center;
   width: 120px;
   margin-top: 20px;
   margin-left: auto;
@@ -205,7 +200,6 @@ body {
   background-color: #f8f9fa;
   border-radius: 4px;
   letter-spacing: 1px;
-  text-align: center;
 }
 
 .book-form > input[type='submit']:hover {
